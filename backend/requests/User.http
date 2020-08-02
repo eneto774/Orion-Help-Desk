@@ -1,0 +1,21 @@
+# Variables
+
+@hostname = http://localhost
+@port = 3333
+@host = {{hostname}}:{{port}}
+@json = Content-Type: application/json
+
+
+###
+### REGISTER USER
+POST {{host}}/users HTTP/1.1
+{{json}}
+
+{
+  "name": "Edgar Ribeiro Neto",
+  "email": "eneto4w8485d@gmail.com",
+  "password": "123dd44"
+}
+
+###
+### LIST USERS
