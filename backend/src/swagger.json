@@ -25,27 +25,42 @@
         "produces": ["application/json"],
         "summary": "Create a new user",
         "parameters": [{
-            "name": "name",
-            "description": "User fullname",
-            "in": "body",
-            "required": true
-          },
-          {
-            "name": "email",
-            "description": "Login Email",
+            "name": "User",
+            "description": "User Data: Fullname, Email, Password.",
             "in": "body",
             "required": true
           }
         ],
         "responses": {
           "200": {
-            "description": "OK",
+            "description": "User successfully registered",
             "schema": {
               "$ref": "#/definitions/NewUser"
             }
-          },
-          "400": {
-            "description": "Validation Failed"
+          }
+        }
+      }
+    },
+    "/auth": {
+      "post": {
+        "tags": [
+          "Users"
+        ],
+        "produces": ["application/json"],
+        "summary": "Authenticate User and Generate JWT",
+        "parameters": [{
+            "name": "User Login Data",
+            "description": "User Data: Email, Password.",
+            "in": "body",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "User Authenticated and JWT generated",
+            "schema": {
+              "$ref": "#/definitions/ResponseJWTCreate"
+            }
           }
         }
       }
@@ -95,6 +110,18 @@
           "type": "string",
           "format": "password"
         }
+      }
+    },
+    "ResponseJWTCreate": {
+      "type": "object",
+      "properties": {
+        "id": {"type": "string"},
+        "name": {"type": "string"},
+        "email": {"type": "string"},
+        "avatar": {"type": "string"},
+        "created_at": {"type": "string"},
+        "updated_at": {"type": "string"},
+        "token": {"type": "string"}
       }
     }
   }

@@ -9,8 +9,8 @@ import * as swaggerDocument from './swagger.json';
 const app = express();
 
 app.use(express.json());
-app.use(routes);
 app.use('/docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
+app.use(routes);
 
 app.use((err: Error, req: Request, res: Response, _: NextFunction) => {
   if (err instanceof AppError) {
